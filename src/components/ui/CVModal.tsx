@@ -81,17 +81,15 @@ CERTIFICATIONS & ACCREDITATIONS
 -------------------------------
 ${RESUME_DATA.certifications.map((c) => `* ${c}`).join("\n")}
 ============================================================
-`;
+`};
 
-    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
+  const handleDownloadText = () => {
     const link = document.createElement("a");
-    link.href = url;
-    link.download = `Shubhangi_Dixit_Resume.txt`;
+    link.href = "/resume.pdf";
+    link.download = "Shubhangi_Dixit_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    URL.revokeObjectURL(url);
   };
 
   const handleCopyEmail = () => {
@@ -126,7 +124,7 @@ ${RESUME_DATA.certifications.map((c) => `* ${c}`).join("\n")}
               <div className="flex items-center space-x-2">
                 <div className="h-3 w-3 rounded-full bg-violet-400 animate-pulse" />
                 <span className="font-mono text-sm font-medium text-purple-200">
-                  Curriculum Vitae Preview • Shubhangi Dixit
+                  Curriculum Preview • Shubhangi Dixit
                 </span>
               </div>
 
@@ -134,19 +132,20 @@ ${RESUME_DATA.certifications.map((c) => `* ${c}`).join("\n")}
                 <button
                   onClick={handlePrint}
                   title="Print Resume"
-                  className="flex items-center space-x-1.5 rounded-lg border border-purple-500/30 bg-purple-950/40 px-3 py-1.5 text-xs text-purple-200 hover:border-purple-400 hover:bg-purple-900/50 transition-all"
+                  className="flex items-center space-x-1.5 rounded-lg border border-purple-500/30 bg-purple-950/40 px-3 py-1.5 text-xs text-purple-200 hover:border-purple-400 hover:bg-purple-900/50 transition-all cursor-pointer"
                 >
                   <Printer className="h-3.5 w-3.5" />
                   <span className="hidden sm:inline">Print</span>
                 </button>
 
-                <button
-                  onClick={handleDownload}
-                  className="flex items-center space-x-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-violet-600 px-3.5 py-1.5 text-xs font-semibold text-white shadow-[0_0_15px_rgba(168,85,247,0.4)] hover:brightness-110 active:scale-95 transition-all"
+                <a
+                  href="/resume.pdf"
+                  download="Shubhangi_Dixit_Resume.pdf"
+                  className="flex items-center space-x-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-violet-600 px-3.5 py-1.5 text-xs font-semibold text-white shadow-[0_0_15px_rgba(168,85,247,0.4)] hover:brightness-110 active:scale-95 transition-all cursor-pointer"
                 >
                   <Download className="h-3.5 w-3.5" />
                   <span>Download CV</span>
-                </button>
+                </a>
 
                 <button
                   onClick={onClose}
@@ -260,7 +259,7 @@ ${RESUME_DATA.certifications.map((c) => `* ${c}`).join("\n")}
               <div>
                 <h2 className="flex items-center space-x-2 text-sm font-bold uppercase tracking-wider text-purple-300">
                   <Code className="h-4 w-4 text-violet-400" />
-                  <span>Technical Competencies</span>
+                  <span>Technical Skills</span>
                 </h2>
                 <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                   <div className="rounded-lg border border-purple-500/15 bg-purple-950/20 p-3">
@@ -294,7 +293,7 @@ ${RESUME_DATA.certifications.map((c) => `* ${c}`).join("\n")}
               <div>
                 <h2 className="flex items-center space-x-2 text-sm font-bold uppercase tracking-wider text-purple-300">
                   <Briefcase className="h-4 w-4 text-violet-400" />
-                  <span>Key Engineering Projects</span>
+                  <span>Key Projects</span>
                 </h2>
                 <div className="mt-3 space-y-4">
                   {RESUME_DATA.projects.map((proj, idx) => (
@@ -338,7 +337,7 @@ ${RESUME_DATA.certifications.map((c) => `* ${c}`).join("\n")}
 
             {/* Modal Bottom Footer */}
             <div className="flex items-center justify-between border-t border-purple-500/20 bg-[#120e2e]/90 px-4 py-3 sm:px-6 text-xs text-slate-400">
-              <span>Ready for Immediate Roles in Data Science &amp; Full-Stack Engineering</span>
+              <span>Ready for Roles in Data Science &amp; Full-Stack Engineering</span>
               <button
                 onClick={handleDownload}
                 className="text-violet-400 hover:text-white font-medium underline flex items-center space-x-1"
@@ -352,4 +351,4 @@ ${RESUME_DATA.certifications.map((c) => `* ${c}`).join("\n")}
       )}
     </AnimatePresence>
   );
-};
+}

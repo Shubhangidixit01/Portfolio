@@ -20,11 +20,11 @@ export const EducationSection: React.FC = () => {
         className="flex flex-col items-start space-y-2 border-b border-white/[0.08] pb-6"
       >
         <span className="font-mono text-xs font-semibold uppercase tracking-widest text-purple-400">
-          Academic Track Record
+          Academic Journey
         </span>
         <div className="flex flex-col md:flex-row md:items-end justify-between w-full gap-4">
           <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-            Education &amp; Qualifications
+            Education Record
           </h2>
           <p className="text-slate-400 text-xs sm:text-sm max-w-md">
             Undergraduate computer science honours curriculum combined with foundational mathematics and science schooling.
@@ -40,11 +40,10 @@ export const EducationSection: React.FC = () => {
             <button
               key={idx}
               onClick={() => setSelectedIdx(idx)}
-              className={`relative flex items-center space-x-2 rounded-lg px-4 py-2 text-xs sm:text-sm font-medium transition-colors border ${
-                isSelected
-                  ? "border-purple-500/40 text-white font-semibold"
-                  : "border-white/[0.06] text-slate-400 hover:text-slate-200"
-              }`}
+              className={`relative flex items-center space-x-2 rounded-lg px-4 py-2 text-xs sm:text-sm font-medium transition-colors border ${isSelected
+                ? "border-purple-500/40 text-white font-semibold"
+                : "border-white/[0.06] text-slate-400 hover:text-slate-200"
+                }`}
             >
               {isSelected && (
                 <motion.div

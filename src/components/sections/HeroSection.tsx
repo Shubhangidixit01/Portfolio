@@ -394,14 +394,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCV }) => {
             </div>
           </motion.div>
 
-          {/* Tagline */}
+          {/* Tagline / Bio from portfolioData */}
           <motion.p
             variants={itemVariants}
             className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed"
           >
-            Computer Science student specialized in Data Science &amp; Data Engineering with
-            hands-on experience in Data analysis, Python, SQL, Development and AI-based
-            applications. Focused on building practical projects and turning data into useful insights.
+            {PERSONAL_INFO.bio}
           </motion.p>
 
           {/* Action CTAs */}
@@ -416,15 +414,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCV }) => {
               <ArrowRight className="h-3.5 w-3.5" />
             </motion.a>
 
-            <motion.button
-              onClick={onOpenCV}
+            <motion.a
+              href="/resume.pdf"
+              download="Shubhangi_Dixit_Resume.pdf"
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center space-x-2 rounded-xl border border-white/[0.1] bg-slate-900/80 px-4 py-2.5 text-xs sm:text-sm font-semibold text-slate-200 hover:bg-slate-800 hover:text-white transition-all cursor-pointer"
             >
               <FileText className="h-3.5 w-3.5 text-purple-400" />
               <span>Download CV</span>
-            </motion.button>
+            </motion.a>
           </motion.div>
 
           {/* Social Links */}
