@@ -53,12 +53,12 @@ ${RESUME_DATA.summary}
 EDUCATION
 ---------
 ${RESUME_DATA.education
-  .map(
-    (e) => `* ${e.institution} - ${e.degree} (${e.duration})
+        .map(
+          (e) => `* ${e.institution} - ${e.degree} (${e.duration})
   ${e.grade} | ${e.location}
   ${e.details.map((d) => `  - ${d}`).join("\n")}`
-  )
-  .join("\n\n")}
+        )
+        .join("\n\n")}
 
 TECHNICAL COMPETENCIES
 ----------------------
@@ -70,12 +70,12 @@ TECHNICAL COMPETENCIES
 KEY PROJECTS
 ------------
 ${RESUME_DATA.projects
-  .map(
-    (p) => `* ${p.title} (${p.date})
+        .map(
+          (p) => `* ${p.title} (${p.date})
   Tech Stack: ${p.tech}
   ${p.points.map((pt) => `  - ${pt}`).join("\n")}`
-  )
-  .join("\n\n")}
+        )
+        .join("\n\n")}
 
 CERTIFICATIONS & ACCREDITATIONS
 -------------------------------
@@ -320,7 +320,7 @@ ${RESUME_DATA.certifications.map((c) => `* ${c}`).join("\n")}
               <div>
                 <h2 className="flex items-center space-x-2 text-sm font-bold uppercase tracking-wider text-purple-300">
                   <Award className="h-4 w-4 text-violet-400" />
-                  <span>Certifications &amp; Accreditations</span>
+                  <span>Certifications</span>
                 </h2>
                 <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {RESUME_DATA.certifications.map((cert, idx) => (

@@ -102,21 +102,10 @@ body {
     linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
 }
 
-/* Custom cursor desktop mode: hides default cursor to let fluid custom cursor shine */
+/* Native cursor is preserved for precision and accessibility */
 @media (hover: hover) and (pointer: fine) {
-  html.has-custom-cursor,
-  html.has-custom-cursor body,
-  html.has-custom-cursor a,
-  html.has-custom-cursor button,
-  html.has-custom-cursor [role="button"],
-  html.has-custom-cursor .cursor-pointer {
-    cursor: none !important;
-  }
-
-  html.has-custom-cursor input,
-  html.has-custom-cursor textarea,
-  html.has-custom-cursor select {
-    cursor: text !important;
+  a, button, [role="button"], .cursor-pointer {
+    cursor: pointer;
   }
 }
 
