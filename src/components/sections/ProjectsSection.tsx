@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Database, Sparkles, Shield, Layers } from "lucide-react";
 import { GithubIcon } from "@/components/ui/Icons";
@@ -10,6 +11,11 @@ type CategoryFilter = "All" | "Data Science & Engineering" | "Full-Stack & AI" |
 
 export const ProjectsSection: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<CategoryFilter>("All");
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+
+  const handleImageError = (projectId: string) => {
+    setFailedImages((prev) => ({ ...prev, [projectId]: true }));
+  };
 
   const filteredProjects = PROJECTS.filter((p) => {
     if (activeFilter === "All") return true;
@@ -111,18 +117,34 @@ export const ProjectsSection: React.FC = () => {
               {/* Top Visual Card Header */}
               <div>
                 <div
-                  className={`relative h-44 w-full bg-gradient-to-br ${getProjectGradient(
+                  className={`relative h-48 w-full bg-gradient-to-br ${getProjectGradient(
                     project.id
                   )} border-b border-white/[0.06] p-5 flex flex-col justify-between overflow-hidden`}
                 >
+                  {/* Cover Image if available */}
+                  {project.coverImage && !failedImages[project.id] && (
+                    <>
+                      <Image
+                        src={project.coverImage}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        onError={() => handleImageError(project.id)}
+                      />
+                      {/* Dark gradient overlay for text legibility */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/40 z-0" />
+                    </>
+                  )}
+
                   {/* Ambient Pattern */}
-                  <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none" />
+                  <div className="absolute inset-0 bg-grid-subtle opacity-20 pointer-events-none z-[1]" />
 
                   <div className="relative z-10 flex items-center justify-between">
-                    <div className="h-9 w-9 rounded-lg bg-slate-900/80 border border-white/[0.1] flex items-center justify-center backdrop-blur-sm group-hover:scale-105 transition-transform">
+                    <div className="h-9 w-9 rounded-lg bg-slate-900/80 border border-white/[0.1] flex items-center justify-center backdrop-blur-sm group-hover:scale-105 transition-transform shadow-md">
                       {getProjectIcon(project.category)}
                     </div>
-                    <span className="rounded-full bg-slate-900/80 border border-white/[0.08] px-2.5 py-0.5 text-[10px] font-mono text-purple-300 backdrop-blur-sm">
+                    <span className="rounded-full bg-slate-900/85 border border-white/[0.1] px-2.5 py-0.5 text-[10px] font-mono text-purple-300 backdrop-blur-sm shadow-md">
                       {project.category}
                     </span>
                   </div>

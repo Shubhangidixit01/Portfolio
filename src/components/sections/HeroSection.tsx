@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, FileText, Mail, Brain, BarChart2, Database, Code2, TrendingUp, Cpu } from "lucide-react";
+import { ArrowRight, FileText, Mail, Brain, BarChart2, Database, Code2, TrendingUp, Cpu, Network } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
@@ -256,11 +256,11 @@ function OrbitalWidget() {
         );
       })}
 
-      {/* ── Central glowing orb (no icon inside) ── */}
+      {/* ── Central glowing orb with neural network icon ── */}
       <motion.div
         animate={{ scale: [1, 1.08, 1], opacity: [0.9, 1, 0.9] }}
         transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute rounded-full"
+        className="absolute rounded-full flex items-center justify-center"
         style={{
           width: 64,
           height: 64,
@@ -270,7 +270,9 @@ function OrbitalWidget() {
           border: "1px solid rgba(167,139,250,0.55)",
           boxShadow: "0 0 32px rgba(139,92,246,0.5), 0 0 60px rgba(139,92,246,0.2), inset 0 0 16px rgba(167,139,250,0.25)",
         }}
-      />
+      >
+        <Network className="w-5 h-5 text-white/90" style={{ filter: "drop-shadow(0 0 6px rgba(167,139,250,0.8))" }} />
+      </motion.div>
 
       {/* ── Slow-pulse outer halo ── */}
       <motion.div

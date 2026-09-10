@@ -10,7 +10,16 @@ export interface ProjectItem {
   highlights: string[];
   githubUrl: string;
   liveUrl?: string;
+  coverImage?: string;
   featured: boolean;
+}
+
+export type SkillCategoryType = "Languages" | "Tools/Platforms" | "Frameworks" | "Soft Skills";
+
+export interface SkillItem {
+  name: string;
+  category: SkillCategoryType;
+  iconName: string;
 }
 
 export interface SkillCategory {
@@ -32,8 +41,10 @@ export interface CertificateItem {
   date: string;
   credentialUrl: string;
   credentialId?: string;
+  imageUrl?: string;
   skills: string[];
   grade?: string;
+  type?: "Certificates" | "Certifications";
   iconType: "cloud" | "database" | "ai" | "code" | "analytics" | "security";
 }
 
@@ -63,7 +74,7 @@ export const PERSONAL_INFO = {
   stats: [
     { label: "Data Records Processed", value: "72.5K+", suffix: "" },
     { label: "AI & Pipeline Projects", value: "8+", suffix: "" },
-    { label: "Certifications & Honors", value: "7+", suffix: "" },
+    { label: "Certifications & Honors", value: "10+", suffix: "" },
     { label: "Academics B.Tech CGPA", value: "8.04", suffix: "/10" },
   ],
 };
@@ -125,6 +136,46 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   },
 ];
 
+export const SKILL_ITEMS: SkillItem[] = [
+  // Languages (6)
+  { name: "Python", category: "Languages", iconName: "Code2" },
+  { name: "Java", category: "Languages", iconName: "Coffee" },
+  { name: "JavaScript", category: "Languages", iconName: "FileCode" },
+  { name: "C", category: "Languages", iconName: "Cpu" },
+  { name: "C++", category: "Languages", iconName: "Terminal" },
+  { name: "R", category: "Languages", iconName: "BarChart2" },
+
+  // Tools/Platforms (9)
+  { name: "Jupyter Notebook", category: "Tools/Platforms", iconName: "BookOpen" },
+  { name: "Tableau Public", category: "Tools/Platforms", iconName: "BarChart3" },
+  { name: "PowerBI Desktop", category: "Tools/Platforms", iconName: "PieChart" },
+  { name: "MS Excel", category: "Tools/Platforms", iconName: "Table" },
+  { name: "MySQL Workbench", category: "Tools/Platforms", iconName: "Database" },
+  { name: "Git", category: "Tools/Platforms", iconName: "GitBranch" },
+  { name: "GitHub", category: "Tools/Platforms", iconName: "Github" },
+  { name: "Docker (basic)", category: "Tools/Platforms", iconName: "Box" },
+  { name: "MongoDB Atlas", category: "Tools/Platforms", iconName: "Layers" },
+
+  // Frameworks (9)
+  { name: "Numpy", category: "Frameworks", iconName: "Binary" },
+  { name: "Pandas", category: "Frameworks", iconName: "Table2" },
+  { name: "Matplotlib", category: "Frameworks", iconName: "LineChart" },
+  { name: "Seaborn", category: "Frameworks", iconName: "TrendingUp" },
+  { name: "Scikit-Learn", category: "Frameworks", iconName: "Brain" },
+  { name: "React.js", category: "Frameworks", iconName: "Atom" },
+  { name: "Node.js", category: "Frameworks", iconName: "Server" },
+  { name: "Express.js", category: "Frameworks", iconName: "Workflow" },
+  { name: "Flask", category: "Frameworks", iconName: "Flame" },
+
+  // Soft Skills (6)
+  { name: "Problem-Solving", category: "Soft Skills", iconName: "Lightbulb" },
+  { name: "Analytical Thinking", category: "Soft Skills", iconName: "Target" },
+  { name: "Communication", category: "Soft Skills", iconName: "MessageSquare" },
+  { name: "Teamwork", category: "Soft Skills", iconName: "Users" },
+  { name: "Leadership", category: "Soft Skills", iconName: "Compass" },
+  { name: "Adaptability", category: "Soft Skills", iconName: "Zap" },
+];
+
 export const PROJECTS: ProjectItem[] = [
   {
     id: "vector-ai-guidance",
@@ -134,6 +185,7 @@ export const PROJECTS: ProjectItem[] = [
     description: "An intelligent career planning platform integrating Google's Gemini API to analyze candidate profiles, assess real-time skill gaps, and dynamically formulate actionable learning roadmaps.",
     longDescription: "Vector leverages the Gemini 1.5 Pro LLM alongside a performant Node.js/Express backend and MongoDB data store. Features automated resume scoring, tailored career transition roadmaps, interactive milestone checklists, and Cloudinary-powered asset streaming. Provides students and professionals with actionable, personalized career pathways.",
     tags: ["Gemini API", "Node.js", "Express.js", "MongoDB", "Cloudinary", "JWT Auth", "Tailwind CSS"],
+    coverImage: "/projects/vector-ai-guidance.jpg",
     metrics: [
       { label: "LLM Model", value: "Gemini 1.5" },
       { label: "Inference Latency", value: "< 850ms" },
@@ -157,6 +209,7 @@ export const PROJECTS: ProjectItem[] = [
     description: "A comprehensive data engineering and analytical pipeline processing 72,575 real-world records to uncover employment patterns, fund distribution, and seasonal labor anomalies under MGNREGA.",
     longDescription: "Architected an automated multi-stage Python ETL pipeline that ingested raw government records across 6 distinct Indian states. Conducted comprehensive data cleaning, missing-value imputation, outlier filtering, and statistical aggregations. Developed an interactive Power BI dashboard featuring dynamic DAX KPIs, temporal heatmaps, and demographic breakdowns for policy insights.",
     tags: ["Python", "ETL Pipeline", "Power BI", "Pandas", "NumPy", "Data Wrangling", "Statistical Analysis"],
+    coverImage: "/projects/mgnrega-analysis.jpg",
     metrics: [
       { label: "Records Ingested", value: "72,575" },
       { label: "States Analyzed", value: "6 Major" },
@@ -180,6 +233,7 @@ export const PROJECTS: ProjectItem[] = [
     description: "A hardened web application engineered in Flask providing end-to-end encryption at rest, time-based one-time password (TOTP) two-factor authentication, and granular access authorization.",
     longDescription: "SecureFS is built for environments demanding rigorous privacy and confidentiality. Implements Fernet symmetric encryption with PBKDF2 HMAC-SHA256 key derivation to guarantee zero plaintext exposure on physical disks. Integrates authenticator app-compatible TOTP 2FA, session timeouts, and SQLite audit logging.",
     tags: ["Flask", "Python", "SQLite", "2FA (TOTP)", "Fernet / AES", "Cryptography", "bcrypt"],
+    coverImage: "/projects/securefs-file-management.jpg",
     metrics: [
       { label: "Encryption", value: "Fernet / AES" },
       { label: "Auth Mechanism", value: "TOTP 2FA" },
@@ -199,74 +253,123 @@ export const PROJECTS: ProjectItem[] = [
 
 export const CERTIFICATES: CertificateItem[] = [
   {
-    id: "deloitte-analytics",
-    title: "Deloitte Data Analytics Job Simulation",
-    issuer: "Deloitte | Forage",
-    date: "Jul 2026",
-    credentialUrl: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/Deloitte/data-analytics",
-    credentialId: "FORAGE-DELOITTE-DA-2026",
-    skills: ["Data Analytics", "Forensic Data Analysis", "Client Presentation", "Tableau", "Dashboarding"],
-    iconType: "analytics",
-  },
-  {
     id: "infosys-dbms",
     title: "Database Management System Part-1",
-    issuer: "Infosys Springboard",
-    date: "Aug 2026",
-    credentialUrl: "https://infyspringboard.onwingspan.com/",
-    credentialId: "INFYS-DBMS-PART1-2026",
-    skills: ["Relational Databases", "SQL Optimization", "Normalization", "ACID Transactions", "ER Modeling"],
+    issuer: "Infosys",
+    date: "Aug’ 26",
+    credentialUrl: "https://infyspringboard.onwingspan.com/web/en/app/profile/competency/certificate",
+    credentialId: "INFYS-DBMS-PART1",
+    imageUrl: "/certificates/infosys-dbms.jpg",
+    skills: ["Relational Databases", "SQL Optimization", "Normalization", "ER Modeling"],
+    type: "Certificates",
     iconType: "database",
-  },
-  {
-    id: "lpu-mern-bootcamp",
-    title: "AI-Driven MERN Stack Bootcamp (Grade O)",
-    issuer: "Lovely Professional University",
-    date: "Jul 2026",
-    credentialUrl: "https://lpu.in",
-    grade: "Grade O (Outstanding)",
-    credentialId: "LPU-MERN-AI-GRADE-O",
-    skills: ["React.js", "Node.js", "Express.js", "MongoDB", "AI Agent Integration", "RESTful Architecture"],
-    iconType: "ai",
-  },
-  {
-    id: "iamneo-java-dsa",
-    title: "Programming in JAVA, OOPs, DSA",
-    issuer: "iamneo",
-    date: "2025",
-    credentialUrl: "https://iamneo.ai",
-    credentialId: "NEO-JAVA-DSA-CERT",
-    skills: ["Java", "Object-Oriented Design", "Data Structures", "Algorithms", "Algorithmic Complexity"],
-    iconType: "code",
-  },
-  {
-    id: "mlsa-codestorm",
-    title: "Microsoft Learn Student Ambassador CodeStorm Hackathon",
-    issuer: "Microsoft Learn Student Ambassadors (MLSA)",
-    date: "2025",
-    credentialUrl: "https://studentambassadors.microsoft.com",
-    credentialId: "MLSA-CODESTORM-HONOR",
-    skills: ["Cloud Architecture", "Collaborative Engineering", "Rapid Prototyping", "Full-Stack Web"],
-    iconType: "cloud",
   },
   {
     id: "techveda-data-management",
     title: "Data Management (Excel & Tableau)",
     issuer: "Tech Veda",
-    date: "2025",
-    credentialUrl: "https://techveda.org",
+    date: "Mar’ 25",
+    credentialUrl: "https://drive.google.com/file/d/1L43kvBED_zJ9jXXNIkprko4iMNMNFAXo/view?usp=sharing",
     credentialId: "TV-DM-EXCEL-TABLEAU",
+    imageUrl: "/certificates/techveda-data-management.jpg",
     skills: ["Advanced Excel", "Tableau Public", "Data Modeling", "Executive Storytelling"],
+    type: "Certificates",
     iconType: "analytics",
   },
   {
     id: "cse-pathshala-python",
     title: "Basic to Beyond Python",
     issuer: "CSE Pathshala",
-    date: "2024",
-    credentialUrl: "https://csepathshala.com",
+    date: "Jan’ 25",
+    credentialUrl: "https://drive.google.com/file/d/1HrtF_uBmnQlZ3f7lZ5pP_Gz1F5umGSwE/view?usp=sharing",
     credentialId: "CSEP-PY-BEYOND",
+    imageUrl: "/certificates/cse-pathshala-python.jpg",
     skills: ["Python Core", "Data Structures", "Automation Scripting", "Functional Programming"],
+    type: "Certificates",
+    iconType: "code",
+  },
+  {
+    id: "mlsa-codestorm",
+    title: "Microsoft Learn Student Ambassador CodeStorm Hackathon",
+    issuer: "MLSA",
+    date: "Nov’ 24",
+    credentialUrl: "https://drive.google.com/file/d/1rK3S7UgB0jvzOYhYx44qtXjorkEtx0JR/view?usp=sharing",
+    credentialId: "MLSA-CODESTORM-HONOR",
+    imageUrl: "/certificates/mlsa-codestorm.jpg",
+    skills: ["Cloud Architecture", "Collaborative Engineering", "Rapid Prototyping", "Full-Stack Web"],
+    type: "Certificates",
+    iconType: "cloud",
+  },
+  {
+    id: "udemy-communication-skills",
+    title: "Communication Skills",
+    issuer: "Udemy",
+    date: "Oct’ 24",
+    credentialUrl: "https://drive.google.com/file/d/1xglkxmsHhngEAFbmRzgq12x1BzH7MFSU/view?usp=sharing",
+    credentialId: "UDEMY-COMM-SKILLS",
+    imageUrl: "/certificates/udemy-communication-skills.jpg",
+    skills: ["Professional Communication", "Presentation", "Active Listening", "Teamwork"],
+    type: "Certificates",
+    iconType: "analytics",
+  },
+  {
+    id: "deloitte-analytics",
+    title: "Deloitte Data Analytics Job Simulation",
+    issuer: "Forage",
+    date: "Jul’ 26",
+    credentialUrl: "https://www.theforage.com/simulations/deloitte-au/data-analytics-s5zy/completed",
+    credentialId: "FORAGE-DELOITTE-DA",
+    imageUrl: "/certificates/deloitte-analytics.jpg",
+    skills: ["Data Analytics", "Forensic Data Analysis", "Client Presentation", "Tableau"],
+    type: "Certifications",
+    iconType: "analytics",
+  },
+  {
+    id: "iamneo-java",
+    title: "Programming in JAVA",
+    issuer: "iamneo",
+    date: "May’ 26",
+    credentialUrl: "https://drive.google.com/file/d/1vWsjwZZqQMfG60gjBvksO70unNk5vO3g/view?usp=sharing",
+    credentialId: "IAMNEO-JAVA",
+    imageUrl: "/certificates/iamneo-java.jpg",
+    skills: ["Java", "Object-Oriented Design", "Collections Framework", "Core Java"],
+    type: "Certifications",
+    iconType: "code",
+  },
+  {
+    id: "iamneo-oop",
+    title: "Object Oriented Programming",
+    issuer: "iamneo",
+    date: "Jan’ 26",
+    credentialUrl: "https://drive.google.com/file/d/1yyuGtyKd6iqhQNZJDZrNBOjhOKvkN41L/view?usp=sharing",
+    credentialId: "IAMNEO-OOP",
+    imageUrl: "/certificates/iamneo-oop.jpg",
+    skills: ["OOP Concepts", "Inheritance & Polymorphism", "Encapsulation", "Design Principles"],
+    type: "Certifications",
+    iconType: "code",
+  },
+  {
+    id: "iamneo-dsa",
+    title: "Data Structure and Algorithm",
+    issuer: "iamneo",
+    date: "Jan’ 26",
+    credentialUrl: "https://drive.google.com/file/d/1JM96f-nsWe4dEPcAIL_KHonJcamTr9iU/view?usp=sharing",
+    credentialId: "IAMNEO-DSA",
+    imageUrl: "/certificates/iamneo-dsa.jpg",
+    skills: ["Data Structures", "Algorithms", "Time Complexity", "Optimization"],
+    type: "Certifications",
+    iconType: "code",
+  },
+  {
+    id: "iamneo-computer-programming",
+    title: "Computer Programming",
+    issuer: "iamneo",
+    date: "May’ 25",
+    credentialUrl: "https://drive.google.com/file/d/1u0G-G16TgevPgz9Wvkd43S-gkMw_cPxX/view?usp=sharing",
+    credentialId: "IAMNEO-COMP-PROG",
+    imageUrl: "/certificates/iamneo-computer-programming.jpg",
+    skills: ["C Programming", "Control Flow", "Memory Management", "Problem Solving"],
+    type: "Certifications",
     iconType: "code",
   },
 ];
