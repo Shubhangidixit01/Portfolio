@@ -12,7 +12,7 @@ interface HeroSectionProps {
 
 const ROLES = [
   "Data Scientist",
-  "Python • SQL • Analytics",
+  "Python • Java • SQL • Analytics",
   "Full Stack & AI Engineer",
 ];
 

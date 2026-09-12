@@ -65,7 +65,7 @@ export const PERSONAL_INFO = {
   role: "Data Science & Data Engineering Specialist",
   roleSecondary: "Full-Stack AI Engineer",
   tagline: "Building data-driven applications, data pipelines, and AI-powered web solutions.",
-  bio: "Computer Science student exploring data engineering, AI, and full-stack development through hands-on projects. Worked on large messy datasets, web applications, and AI integrations using tools such as Gemini. Interested in building practical software that solves real problems and learning through continuous experimentation.",
+  bio: "Computer Science student exploring data engineering, AI, and full-stack development through hands-on projects. Worked on large messy datasets, web applications, and AI integrations. Interested in building practical software that solves real problems and learning through continuous experimentation.",
   email: "shubhangidixitlko@gmail.com",
   phone: "+91 9453921211",
   location: "Lucknow & Punjab, India",
@@ -218,8 +218,7 @@ export const PROJECTS: ProjectItem[] = [
     highlights: [
       "Constructed an automated data pipeline processing 72,575 real-world records across 6 states.",
       "Cleaned, normalized, and modeled raw district level data to reveal seasonal employment trends and expenditure distribution across regions of India.",
-      "Designed dynamic Power BI dashboard featuring KPI cards, geo-spatial maps, and gender participation metrics.",
-      "Formulated regression models evaluating fund utilization velocity versus household demand.",
+      "Designed dynamic Power BI dashboard featuring KPI cards, geo-spatial maps, and gender participation metrics."
     ],
     githubUrl: "https://github.com/Shubhangidixit01",
     liveUrl: "https://github.com/Shubhangidixit01",
