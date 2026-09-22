@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { DataPipelineCanvas } from "@/components/ui/DataPipelineCanvas";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Shubhangi Dixit | Data Science & Data Engineering Specialist | Full-Stack AI Engineer",
@@ -41,6 +42,7 @@ export default function RootLayout({
         <div className="relative z-10 flex min-h-screen flex-col">
           {children}
         </div>
+        <Analytics />
       </body>
     </html>
   );
